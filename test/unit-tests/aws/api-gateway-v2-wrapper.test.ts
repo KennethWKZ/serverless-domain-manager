@@ -810,7 +810,7 @@ describe("API Gateway V2 wrapper checks", () => {
             SecurityPolicy: "SecurityPolicy_TLS13_1_3_2025_09"
           }],
           securityPolicy: "SecurityPolicy_TLS13_1_3_2025_09"
-        });
+        } as any);
 
         const apiGatewayV2Wrapper = new APIGatewayV2Wrapper();
         const dc = new DomainConfig(getDomainConfig({
@@ -837,7 +837,7 @@ describe("API Gateway V2 wrapper checks", () => {
         const commandCalls = APIGatewayMock.commandCalls(UpdateDomainNameCommand);
         expect(commandCalls.length).to.equal(1);
         const call = commandCalls[0];
-        expect(call.args[0].EndpointAccessMode).to.equal("STRICT");
+        expect((call.args[0] as any).input.EndpointAccessMode).to.equal("STRICT");
       });
 
       it("update custom domain failure", async () => {

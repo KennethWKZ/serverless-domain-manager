@@ -24,6 +24,7 @@ const getDomainConfig = (customDomainOptions) => {
     createRoute53IPv6Record: customDomainOptions.createRoute53IPv6Record,
     domainName: customDomainOptions.domainName,
     enabled: customDomainOptions.enabled,
+    endpointAccessMode: customDomainOptions.endpointAccessMode,
     endpointType: customDomainOptions.endpointType,
     tlsTruststoreUri: customDomainOptions.tlsTruststoreUri,
     tlsTruststoreVersion: customDomainOptions.tlsTruststoreVersion,

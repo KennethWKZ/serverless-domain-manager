@@ -778,7 +778,7 @@ describe("API Gateway V1 wrapper checks", () => {
         const commandCalls = APIGatewayMock.commandCalls(UpdateDomainNameCommand);
         expect(commandCalls.length).to.equal(1);
         const call = commandCalls[0];
-        const patchOps = call.args[0].patchOperations;
+        const patchOps = (call.args[0] as any).input.patchOperations;
         expect(patchOps.length).to.equal(2);
         expect(patchOps[0]).to.eql({
           op: Op.replace,
@@ -814,7 +814,7 @@ describe("API Gateway V1 wrapper checks", () => {
         expect(result.securityPolicy).to.equal("TLS_1_2");
 
         const commandCalls = APIGatewayMock.commandCalls(UpdateDomainNameCommand);
-        const patchOps = commandCalls[0].args[0].patchOperations;
+        const patchOps = (commandCalls[0].args[0] as any).input.patchOperations;
         expect(patchOps.length).to.equal(2);
         expect(patchOps[1]).to.eql({
           op: Op.replace,
@@ -844,7 +844,7 @@ describe("API Gateway V1 wrapper checks", () => {
         await apiGatewayV1Wrapper.updateCustomDomain(dc);
 
         const commandCalls = APIGatewayMock.commandCalls(UpdateDomainNameCommand);
-        const patchOps = commandCalls[0].args[0].patchOperations;
+        const patchOps = (commandCalls[0].args[0] as any).input.patchOperations;
         expect(patchOps[1]).to.eql({
           op: Op.replace,
           path: "/endpointAccessMode",
